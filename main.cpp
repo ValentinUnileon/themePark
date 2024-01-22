@@ -3,14 +3,19 @@
 #include <algorithm>
 
 #include "Attraction.hpp"
+#include "Admin.hpp"
 #include "User.hpp"
 #include "Visitor.hpp"
 
 
 using namespace std;
 
+bool checkAdminInside(Admin admin);
+bool checkVisitorInside(Visitor visitor);
+
 vector<Attraction> attractions;
 vector<Visitor> visitorList;
+vector<Admin> adminList;
 int numVisitor=0;
 
 int main() {
@@ -32,41 +37,48 @@ int main() {
     numVisitor++;
     Visitor exampleVisitor2("lucia", "1234A", numVisitor);
     numVisitor++;
+
+    Admin exampleAdmin1("valentin", "4321", "A123");
     
     visitorList.push_back(exampleVisitor1);
     visitorList.push_back(exampleVisitor2);
 
+    adminList.push_back(exampleAdmin1);
 
-    string id;
+    cout<< exampleAdmin1.getAdminID() << "-------------------" << endl;
+
+
+    string type;
+    string exit=true;
     int option;
 
     cout << "Welcome to the Krakow theme park " << endl;
 
-    cout << "Introduce your ID " << endl;
-    cin >> id;
+    cout << "Are you an Administrator (A) or a Visitor (V) ?" << endl;
+    cin >> type;
 
-    auto iterador = std::find_if(visitorList.begin(), visitorList.end(),
-        [id]( Visitor& user) {
-            return user.getId() == id;
+    while(exit){
+
+        if(type=="A"){
+
+            exit=false;
+
+        }else if(type=="V"){
+
+            exit=false;
+
+        }else{
+            cout<< "This is not a valid option";
         }
-    );
-
-    
-
-    if (iterador != visitorList.end()) {
-        
-        std::cout << "ID found " << id << " & its a visitor" << endl;
-
-        Attraction atraccion1("rana", 12, 12.4);
-        cout << "the name of the attraction is " << atraccion1.getName();
 
 
-    } else {
 
-        //SI NO ES UN VISITOR COMPROBAR SI ES UN ADMIN
-        
-        std::cout << "No se encontró el elemento con id: " << id << endl;
     }
+
+
+
+
+
 
     
 

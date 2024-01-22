@@ -12,6 +12,6 @@ int Visitor::getVisitorNumber(){
     return visitorNumber;
 }
 
-
-
-
+void Visitor::setVisitorNumber(int num){
+    visitorNumber=num;
+}
