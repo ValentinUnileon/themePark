@@ -15,6 +15,7 @@ public:
     string getAdminID();
     void setAdminID(string id);
     void addAttraction(Attraction attraction);
+    vector<Attraction> getAttractions();
 
     //Functionalities of an Admin
 

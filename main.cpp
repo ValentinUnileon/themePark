@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 
+
 #include "Attraction.hpp"
 #include "Admin.hpp"
 #include "User.hpp"
@@ -11,8 +12,12 @@
 using namespace std;
 
 Admin* checkAdminInside(string id);
-bool checkVisitorInside(Visitor visitor);
+Visitor* checkVisitorInside(string id);
 void showAllVisitors();
+void rideAnAttraction(Visitor* visitor);
+void showAttractionsVisited(Visitor* visitor);
+
+Admin exampleAdmin1("valentin", "4321", "A123");
 
 
 vector<Visitor> visitorList;
@@ -36,14 +41,13 @@ int main() {
 
     // -------------EXAMPLE INTRODUCTIONS -------------
 
-    Visitor exampleVisitor1("ola", "1234", numVisitor);
+    Visitor exampleVisitor1("ola", "1234B", numVisitor);
     numVisitor++;
     Visitor exampleVisitor2("pablo", "1234A", numVisitor);
     numVisitor++;
 
     Attraction attraction("Haunted house", 20, 20.0);
 
-    Admin exampleAdmin1("valentin", "4321", "A123");
 
     exampleAdmin1.addAttraction(attraction);
     
@@ -122,7 +126,75 @@ int main() {
 
         }else if(type=="V"){
 
-            exit=0;
+            char response;
+            Visitor* visitor;
+            
+            cout << "Are you new here? Yes (Y) No (N)" << endl;
+            cin >> response;
+
+            if(response=='Y'){
+                string name;
+                string id;
+                cout << "Insert your name" << endl;
+                cin >> name;
+                cout << "Insert your id" << endl;
+                cin >> id;
+
+                visitor = new Visitor(name, id, numVisitor);
+                numVisitor++;
+
+            }else{
+                string id;
+                cout << "Introduce the visitor ID ";
+                cin >> id;
+                
+                visitor = checkVisitorInside(id);
+            }
+
+
+
+            if(visitor!=nullptr){
+
+
+                exit=0;
+
+                int visitorSelection=1;
+                int choice;
+
+                while(visitorSelection){
+                    
+                    cout << "Choose an option" << endl;
+                    cout << "1. Ride an attraction" << endl;
+                    cout << "2. See the bill" << endl;
+                    cout << "3. See visited attractions" <<endl;
+                    cout << "4. Exit" <<endl;
+
+                    cin >> choice;
+
+                    switch (choice)
+                    {
+                    case 1:
+                        rideAnAttraction(visitor);
+                        break;
+                    case 2:
+                        cout << "Total bill: "<< visitor->getBill() << endl;
+                        break;
+                    case 3:
+                        showAttractionsVisited(visitor);
+                        break;
+                    case 4:
+                        visitorSelection=0;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }else{
+                cout << "Visitor not found" << endl;
+            }
+
+
+
 
         }else{
             cout<< "This is not a valid option";
@@ -144,6 +216,16 @@ Admin* checkAdminInside(string id) {
     return nullptr; 
 }
 
+Visitor* checkVisitorInside(string id) {
+    for (int i = 0; i < visitorList.size(); i++) {
+        if (id == visitorList[i].getId()) {
+            return &visitorList[i]; 
+        }
+    }
+    return nullptr; 
+}
+
+
 void showAllVisitors(){
 
     if(visitorList.size()>0){
@@ -157,6 +239,48 @@ void showAllVisitors(){
         cout << "-----------------------------" << endl;
 
     }
+}
+
+void rideAnAttraction(Visitor* visitor){
+
+    int choice;
+
+    cout<< "Choose one" << endl << endl;
+    exampleAdmin1.showAllAttractions();
+
+    cin >>choice ;
+
+    cout << "Riding the attraction..." << endl;
+    cout << "..." << endl;
+    cout << "..." << endl;
+    cout << "Finished" << endl ;
+
+
+    visitor->addVisitedAttraction(exampleAdmin1.getAttractions()[choice-1]);
+    
+    double bill = visitor->getBill() + exampleAdmin1.getAttractions()[choice-1].getPrice();
+    
+    visitor->setBill(bill);
+
+}
+
+void showAttractionsVisited(Visitor* visitor) {
+
+    if(visitor->getVisitedAttractions().size()>0){
+
+        cout << "---------VISITED ATTRACTIONS-------"<< endl;
+
+        for(int i=0; i< visitor->getVisitedAttractions().size(); i++){
+            cout << visitor->getVisitedAttractions()[i].getName() << endl;
+        }
+
+        cout << "-------------------------------------" << endl;
+
+    }else{
+        cout << "No visited attractions yet" << endl;
+    }
+
 
 
 }
+

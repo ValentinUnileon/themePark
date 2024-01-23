@@ -22,7 +22,7 @@ void Admin::showAllAttractions(){
 
         cout << "--------ATTRACTIONS----------" << endl;
         for(int i=0; i< attractions.size(); i++){
-            cout<< attractions[i].getName() << endl; 
+            cout<< i+1 << ". "<< attractions[i].getName() << endl; 
         }
         cout << "-----------------------------" << endl << endl;
     }
@@ -64,4 +64,8 @@ void Admin::deleteAttraction(){
     }
 
     cout << "Attraction deleted";
+}
+
+vector<Attraction> Admin::getAttractions(){
+    return attractions;
 }

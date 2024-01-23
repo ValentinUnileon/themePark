@@ -15,3 +15,19 @@ int Visitor::getVisitorNumber(){
 void Visitor::setVisitorNumber(int num){
     visitorNumber=num;
 }
+
+void Visitor::addVisitedAttraction(Attraction attraction){
+    attractionVisited.push_back(attraction);
+}
+
+void Visitor::setBill(double bill){
+    totalPrice=bill;
+}
+
+double Visitor::getBill(){
+    return totalPrice;
+}
+
+vector<Attraction> Visitor::getVisitedAttractions(){
+    return attractionVisited;
+}

@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "User.hpp"
+#include "Attraction.hpp"
 
 
 using namespace std;
@@ -17,10 +18,18 @@ public:
     Visitor(string name, string id, int visitorNumber);
 
     int getVisitorNumber();
-
     void setVisitorNumber(int num);
+    void setBill(double bill);
+    double getBill();
+    void addVisitedAttraction(Attraction attraction);
+    vector<Attraction> getVisitedAttractions();
+
 
     int visitorNumber;
+    vector<Attraction> attractionVisited;
+    double totalPrice;
+
+
 
 };
 

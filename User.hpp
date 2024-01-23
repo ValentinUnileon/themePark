@@ -11,14 +11,13 @@ class User {
     public:
         User(string name, string id);
 
-
         string getName();
         string getId();
 
         void setName(string name);
         void setId(string id);
         
-    private:
+    
         string name;
         string id;
 };
