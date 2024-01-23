@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "User.hpp"
+#include "Attraction.hpp"
 
 using namespace std;
 
@@ -13,7 +14,16 @@ public:
 
     string getAdminID();
     void setAdminID(string id);
+    void addAttraction(Attraction attraction);
+
+    //Functionalities of an Admin
+
+    void showAllAttractions();
+    void createAttraction();
+    void deleteAttraction();
 
     string adminID;
+    vector<Attraction> attractions;
+
 
 };

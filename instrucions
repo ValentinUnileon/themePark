@@ -1,1 +1,3 @@
 instruccion to execute
+
+ g++ Attraction.cpp Admin.cpp User.cpp Visitor.cpp main.cpp -o program
