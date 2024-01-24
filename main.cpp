@@ -41,15 +41,19 @@ int main() {
 
     // -------------EXAMPLE INTRODUCTIONS -------------
 
-    Visitor exampleVisitor1("ola", "1234B", numVisitor);
+    Visitor exampleVisitor1("valentin", "1234B", numVisitor);
     numVisitor++;
     Visitor exampleVisitor2("pablo", "1234A", numVisitor);
     numVisitor++;
 
-    Attraction attraction("Haunted house", 20, 20.0);
+    Attraction attraction("HauntedHouse", 20, 20.0);
+    Attraction attraction2("Roaller coaster", 15, 20.0);
+    Attraction attraction3("LiveShows", 50, 25.0);
 
 
     exampleAdmin1.addAttraction(attraction);
+    exampleAdmin1.addAttraction(attraction2);
+    exampleAdmin1.addAttraction(attraction3);
     
     visitorList.push_back(exampleVisitor1);
     visitorList.push_back(exampleVisitor2);

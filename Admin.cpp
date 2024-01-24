@@ -63,7 +63,7 @@ void Admin::deleteAttraction(){
         }
     }
 
-    cout << "Attraction deleted";
+    cout << "Attraction deleted" << endl;
 }
 
 vector<Attraction> Admin::getAttractions(){

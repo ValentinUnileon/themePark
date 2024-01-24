@@ -16,9 +16,6 @@ public:
     void setAdminID(string id);
     void addAttraction(Attraction attraction);
     vector<Attraction> getAttractions();
-
-    //Functionalities of an Admin
-
     void showAllAttractions();
     void createAttraction();
     void deleteAttraction();

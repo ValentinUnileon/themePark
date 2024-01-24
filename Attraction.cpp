@@ -18,8 +18,3 @@ double Attraction::getPrice(){
     return price;
 }
 
-
-
-vector<User> Attraction::getUsers(){
-    return users;
-}
